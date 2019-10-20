@@ -24,9 +24,10 @@ namespace WebApiRest.Controllers
         // GET: api/pergunta/id
         [HttpGet]
         [Route("{idPergunta}")]
-        public PerguntaModel Pergunta(int idPergunta)
+        public PerguntaModel Pergunta(uint idPergunta)
         {
-            var pergunta = listaPerguntas.Find(f => f.ID == idPergunta);
+            var pergunta = listaPerguntas.Find(f => f.Id == idPergunta);
+            pergunta.listaRespostas = RespostaController.Respostas(idPergunta);
             return pergunta;
         }
 
@@ -37,13 +38,16 @@ namespace WebApiRest.Controllers
         {
             if(pergunta != null)
             {
-                if(listaPerguntas.Find(f => f.ID == pergunta.ID) != null)
+                if (QuestionarioController.QuestionarioExiste(pergunta.IdQuestionario))
                 {
-                    return $"O id {pergunta.ID} já está cadastrado em outra pergunta";
+                    pergunta.Id = pergunta.ProximoId();
+                    listaPerguntas.Add(pergunta);
+                    return $"Pergunta id {pergunta.Id} adicionada com sucesso";
                 }
-
-                listaPerguntas.Add(pergunta);
-                return "Pergunta adicionada com sucesso";
+                else
+                {
+                    return $"Erro ao adicionar pergunta, o questionario com id {pergunta.IdQuestionario} não existe";
+                }
             }
 
             return "Erro ao adicionar pergunta";
@@ -51,10 +55,10 @@ namespace WebApiRest.Controllers
 
         // PUT: api/pergunta/id
         [HttpPut]
-        [Route("{idPergunta}")]
-        public string AtualizarPergunta(int idPergunta, [FromBody]PerguntaModel pergunta)
+        [Route("")]
+        public string AtualizarPergunta([FromBody]PerguntaModel pergunta)
         {
-            var obj = listaPerguntas.FirstOrDefault(x => x.ID == idPergunta);
+            var obj = listaPerguntas.FirstOrDefault(x => x.Id == pergunta.Id);
             if (obj != null)
             {
                 obj = pergunta;
@@ -67,9 +71,9 @@ namespace WebApiRest.Controllers
         // DELETE: api/pergunta/id
         [HttpDelete]
         [Route("{idPergunta}")]
-        public string DeletarPergunta(int idPergunta)
+        public string DeletarPergunta(uint idPergunta)
         {
-            var obj = listaPerguntas.FirstOrDefault(x => x.ID == idPergunta);
+            var obj = listaPerguntas.FirstOrDefault(x => x.Id == idPergunta);
             if (obj != null)
             {
                 listaPerguntas.Remove(obj);
@@ -79,9 +83,26 @@ namespace WebApiRest.Controllers
             return "Pergunta não encontrada";
         }
 
-        public bool PerguntaExiste(int idPergunta)
+        public bool PerguntaExiste(uint idPergunta)
         {
-            return listaPerguntas.Find(f => f.ID == idPergunta) != null;
+            return listaPerguntas.Find(f => f.Id == idPergunta) != null;
+        }
+
+        public static List<PerguntaModel> PerguntasRespostas(uint idQuestionario)
+        {
+            List<PerguntaModel> listaRetorno = null;
+
+            if (idQuestionario > 0)
+            {
+                listaRetorno = listaPerguntas.FindAll(f => f.IdQuestionario == idQuestionario);
+
+                foreach (var item in listaRetorno)
+                {
+                    item.listaRespostas = RespostaController.Respostas(item.Id);
+                }
+            }
+
+            return listaRetorno;
         }
     }
 }

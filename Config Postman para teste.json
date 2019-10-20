@@ -1,0 +1,13 @@
+{
+	"version": 1,
+	"collections": [],
+	"environments": [
+		{
+			"id": "8aebef8c-4737-464c-b711-ffedaf26f69a",
+			"name": "My Workspace - globals",
+			"values": []
+		}
+	],
+	"headerPresets": [],
+	"globals": []
+}

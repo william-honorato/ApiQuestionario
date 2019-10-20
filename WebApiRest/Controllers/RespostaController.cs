@@ -21,16 +21,16 @@ namespace WebApiRest.Controllers
         // GET: api/resposta/id
         [HttpGet]
         [Route("{idResposta}")]
-        public RespostaModel Resposta(int idResposta)
+        public RespostaModel Resposta(uint idResposta)
         {
-            var resposta = listaRespostas.Find(f => f.ID == idResposta);
+            var resposta = listaRespostas.Find(f => f.Id == idResposta);
             return resposta;
         }
 
         // GET: api/resposta/pergunta/idPergunta
         [HttpGet]
         [Route("pergunta/{idPergunta}")]
-        public RespostaModel PerguntaRespostas(int idPergunta)
+        public RespostaModel PerguntaRespostas(uint idPergunta)
         {
             var resposta = listaRespostas.Find(f => f.IdPergunta == idPergunta);
             return resposta;
@@ -46,16 +46,12 @@ namespace WebApiRest.Controllers
                 var p = new PerguntaController();
                 if (!p.PerguntaExiste(resposta.IdPergunta))
                 {
-                    return $"O id {resposta.IdPergunta} não existe cadastrado para nenhuma pergunta";
+                    return $"Erro ao adicionar resposta, a pergunta com id {resposta.IdPergunta} não existe";
                 }
 
-                if (listaRespostas.Find(f => f.ID == resposta.ID) != null)
-                {
-                    return $"O id {resposta.ID} já está cadastrado em outra resposta";
-                }
-
+                resposta.Id = resposta.ProximoId();
                 listaRespostas.Add(resposta);
-                return "Resposta adicionada com sucesso";
+                return $"Resposta id {resposta.Id} adicionada com sucesso";
             }
 
             return "Erro ao adicionar resposta";
@@ -63,13 +59,15 @@ namespace WebApiRest.Controllers
 
         // PUT: api/resposta/id
         [HttpPut]
-        [Route("{idResposta}")]
-        public string AtualizarResposta(int idResposta, [FromBody]RespostaModel resposta)
+        [Route("")]
+        public string AtualizarResposta([FromBody]RespostaModel resposta)
         {
-            var obj = listaRespostas.FirstOrDefault(x => x.ID == idResposta);
+            var obj = listaRespostas.FirstOrDefault(x => x.Id == resposta.Id);
             if (obj != null)
             {
-                obj = resposta;
+                listaRespostas.Remove(obj);
+                listaRespostas.Add(resposta);
+                listaRespostas = listaRespostas.OrderBy(o => o.Id).ToList();
                 return "Resposta atualizada com suceso";
             }
 
@@ -79,9 +77,9 @@ namespace WebApiRest.Controllers
         // DELETE: api/resposta/id
         [HttpDelete]
         [Route("{idResposta}")]
-        public string DeletarResposta(int idResposta)
+        public string DeletarResposta(uint idResposta)
         {
-            var obj = listaRespostas.FirstOrDefault(x => x.ID == idResposta);
+            var obj = listaRespostas.FirstOrDefault(x => x.Id == idResposta);
             if (obj != null)
             {
                 listaRespostas.Remove(obj);
@@ -89,6 +87,18 @@ namespace WebApiRest.Controllers
             }
 
             return "Resposta não encontrada";
+        }
+
+        public static List<RespostaModel> Respostas(uint idPergunta)
+        {
+            List<RespostaModel> listaRetorno = null;
+
+            if (idPergunta > 0)
+            {
+                listaRetorno = listaRespostas.FindAll(f => f.IdPergunta == idPergunta);
+            }
+
+            return listaRetorno;
         }
     }
 }
