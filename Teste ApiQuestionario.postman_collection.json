@@ -1,0 +1,347 @@
+{
+	"info": {
+		"_postman_id": "43e19eca-1357-422b-ab8e-e1cf190f9f79",
+		"name": "Teste ApiQuestionario",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:55997/api/questionario/1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55997/api/questionario/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55997",
+					"path": [
+						"api",
+						"questionario",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:55997/api/resposta/1",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"idPergunta\": 1,\r\n    \"textoResposta\": \"É um comando condicional\",\r\n    \"respostaCorreta\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55997/api/resposta/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55997",
+					"path": [
+						"api",
+						"resposta",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:55997/api/questionario/1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55997/api/questionario/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55997",
+					"path": [
+						"api",
+						"questionario",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:55997/api/resposta",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"idPergunta\": 1,\r\n    \"textoResposta\": \"É um comando de decisão\",\r\n    \"respostaCorreta\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55997/api/resposta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55997",
+					"path": [
+						"api",
+						"resposta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:55997/api/questionario/1",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55997/api/questionario/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55997",
+					"path": [
+						"api",
+						"questionario",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:55997/api/resposta",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"idPergunta\":\"1\",\n    \"textoResposta\":\"Desviar para um outro ponto do código\",\n     \"respostaCorreta\":\"false\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55997/api/resposta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55997",
+					"path": [
+						"api",
+						"resposta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:55997/api/resposta",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"idPergunta\":\"1\",\n    \"textoResposta\":\"Para iterar por vários itens\",\n     \"respostaCorreta\":\"true\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55997/api/resposta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55997",
+					"path": [
+						"api",
+						"resposta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:55997/api/pergunta",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"idQuestionario\":\"1\",\n    \"textoPergunta\":\"Para que serve um laço condicional\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55997/api/pergunta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55997",
+					"path": [
+						"api",
+						"pergunta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:55997/api/questionario",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\":\"Questionário de Programação - Condicionais\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55997/api/questionario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55997",
+					"path": [
+						"api",
+						"questionario"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
